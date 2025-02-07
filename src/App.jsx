@@ -1,6 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
+import axios from "axios";
+
 
 export default function App() {
+  const fetchPosts = () => {
+    axios.get("http://localhost:3000/posts").then(function (response) {
+      console.log('i dati presi dalla chiamata', response.data)
+    });
+  };
+
+  useEffect(fetchPosts, []);
+  
   const fixedItems = ["Pane", "Acqua", "Uova"];
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
